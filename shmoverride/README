@@ -19,6 +19,6 @@ and from which domain.
 Therefore, it is not possible to pass the same "magic" value of synth_shmid
 to XShmAttach(...synth_shmid...). Before each XShmAttach, qubes_guid creates
 a temporary ("real") shared memory segment, sets cmd_pages->shmid to it, and
-then executes XShmAttach. This temporary segment is destroyed after
-XShmAttach completes.
-  
+then executes XShmAttach. This temporary segment is destroyed when the
+corresponding real backing memory for the composition buffer is released,
+such as when the window is resized or closed.
